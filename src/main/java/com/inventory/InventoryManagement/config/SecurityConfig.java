@@ -33,8 +33,7 @@ public class SecurityConfig {
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception{
         http.csrf(Customizer -> Customizer.disable());
-        http.authorizeHttpRequests(request -> request.requestMatchers("/admin/register","/admin/getAll","/wholesaler/register","/wholesaler/getAll","/wholesaler/delete/{id}","/stockitem/register","/stockitem/getAll","/stockitem/getbyid/{id}","/stockitem/update/{id}","/stockitem/delete/{id}").permitAll()
-        .anyRequest().authenticated());
+        http.authorizeHttpRequests(request -> request.requestMatchers("/admin/register","/wholesaler/register").permitAll().requestMatchers("/admin/**","/stockitem/**").hasRole("ADMIN").requestMatchers("/wholesaler/**").hasRole("WHOLESALER").anyRequest().authenticated());
         http.httpBasic(Customizer.withDefaults());
         return http.build();
     }

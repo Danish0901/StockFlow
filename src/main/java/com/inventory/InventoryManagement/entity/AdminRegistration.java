@@ -2,6 +2,9 @@ package com.inventory.InventoryManagement.entity;
 
 import java.util.List;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
 import jakarta.persistence.EnumType;
 import jakarta.persistence.Enumerated;
@@ -25,7 +28,8 @@ public class AdminRegistration {
     @Enumerated(EnumType.STRING)
     private RoleEnum role;
 
-    @OneToMany()
+    @OneToMany(mappedBy="admin",cascade=CascadeType.ALL,orphanRemoval=true)
+    @JsonIgnore
     private List<StockItem> stockItem;
 
     public long getId() {
@@ -82,6 +86,14 @@ public class AdminRegistration {
 
     public void setRole(RoleEnum role) {
         this.role = role;
+    }
+
+    public List<StockItem> getStockItem() {
+        return stockItem;
+    }
+
+    public void setStockItem(List<StockItem> stockItem) {
+        this.stockItem = stockItem;
     }
 
 }

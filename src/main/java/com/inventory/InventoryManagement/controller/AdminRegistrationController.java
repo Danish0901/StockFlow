@@ -1,6 +1,7 @@
 package com.inventory.InventoryManagement.controller;
 
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -46,7 +47,7 @@ public class AdminRegistrationController {
             return new ResponseEntity<>(getall,HttpStatus.OK);
             
         } catch (Exception e) {
-            return new ResponseEntity<>("cannot find",HttpStatus.INTERNAL_SERVER_ERROR);
+            return new ResponseEntity<>(Map.of("error",e.getMessage()),HttpStatus.INTERNAL_SERVER_ERROR);
         }
         
     }

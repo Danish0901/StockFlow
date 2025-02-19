@@ -19,7 +19,7 @@ public class AdminConfig implements UserDetails {
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
-        return Collections.singleton(new SimpleGrantedAuthority(admin.getRole().name()));  
+        return Collections.singleton(new SimpleGrantedAuthority("ROLE_"+admin.getRole().name()));  
     }
 
     @Override

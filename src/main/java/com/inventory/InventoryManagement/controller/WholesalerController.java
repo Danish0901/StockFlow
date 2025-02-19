@@ -1,6 +1,7 @@
 package com.inventory.InventoryManagement.controller;
 
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -35,7 +36,7 @@ public class WholesalerController {
             } catch (EmailAlreadyExist ex) {
                 return new ResponseEntity<>("Email is Already Present", HttpStatus.BAD_REQUEST);
             } catch (Exception e) {
-                return new ResponseEntity<>("Wholesaler not created", HttpStatus.BAD_REQUEST);
+                return new ResponseEntity<>(Map.of("Wholesaler not created",e.getMessage()), HttpStatus.BAD_REQUEST);
             }  
     }
     @GetMapping("/getAll")
