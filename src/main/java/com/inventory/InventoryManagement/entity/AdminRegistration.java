@@ -3,6 +3,7 @@ package com.inventory.InventoryManagement.entity;
 import java.util.List;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.inventory.InventoryManagement.entity.order.Order;
 
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
@@ -31,6 +32,10 @@ public class AdminRegistration {
     @OneToMany(mappedBy="admin",cascade=CascadeType.ALL,orphanRemoval=true)
     @JsonIgnore
     private List<StockItem> stockItem;
+
+    @OneToMany(mappedBy = "admin", cascade = CascadeType.ALL)
+    @JsonIgnore
+    private List<Order> orders;
 
     public long getId() {
         return id;
@@ -94,6 +99,14 @@ public class AdminRegistration {
 
     public void setStockItem(List<StockItem> stockItem) {
         this.stockItem = stockItem;
+    }
+
+    public List<Order> getOrders() {
+        return orders;
+    }
+
+    public void setOrders(List<Order> orders) {
+        this.orders = orders;
     }
 
 }

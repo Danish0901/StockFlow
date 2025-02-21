@@ -53,10 +53,16 @@ public class AdminRegistrationServiceImpl implements AdminRegistrationService {
             AdminRegistration admin = existingAdmin.get();
             admin.setName(updatedAdmin.getName());
             admin.setEmail(updatedAdmin.getEmail());
-            admin.setPassword(updatedAdmin.getPassword());
+    
+            // Hash the password before saving
+            BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
+            String hashedPassword = passwordEncoder.encode(updatedAdmin.getPassword());
+            admin.setPassword(hashedPassword);
+    
             admin.setAddress(updatedAdmin.getAddress());
             admin.setPhonenumber(updatedAdmin.getPhonenumber());
             admin.setRole(updatedAdmin.getRole());
+    
             return adminRepo.save(admin);
         } else {
             throw new RuntimeException("Admin not found with id: " + id);

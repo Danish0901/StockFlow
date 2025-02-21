@@ -51,7 +51,9 @@ public class WholesalerServiceImpl implements WholesalerService {
             Wholesaler wholesaler = existingWholesaler.get();
             wholesaler.setName(updatedWholesaler.getName());
             wholesaler.setEmail(updatedWholesaler.getEmail());
-            wholesaler.setPassword(updatedWholesaler.getPassword());
+            BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
+            String hashedPassword = passwordEncoder.encode(updatedWholesaler.getPassword());
+            wholesaler.setPassword(hashedPassword);
             wholesaler.setAddress(updatedWholesaler.getAddress());
             wholesaler.setPhonenumber(updatedWholesaler.getPhonenumber());
             wholesaler.setRole(updatedWholesaler.getRole());

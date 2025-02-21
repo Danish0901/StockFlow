@@ -1,11 +1,18 @@
 package com.inventory.InventoryManagement.entity;
 
+import java.util.List;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.inventory.InventoryManagement.entity.order.Order;
+
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
 import jakarta.persistence.EnumType;
 import jakarta.persistence.Enumerated;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.OneToMany;
 
 @Entity
 public class Wholesaler {
@@ -22,6 +29,10 @@ public class Wholesaler {
 
     @Enumerated(EnumType.STRING)
     private RoleEnum role;
+
+    @OneToMany(mappedBy = "wholesaler", cascade = CascadeType.ALL)
+    @JsonIgnore
+    private List<Order> orders;
 
     public Long getId() {
         return Id;
@@ -65,6 +76,14 @@ public class Wholesaler {
     public void setRole(RoleEnum role) {
         this.role = role;
     } 
+
+    public List<Order> getOrders() {
+        return orders;
+    }
+
+    public void setOrders(List<Order> orders) {
+        this.orders = orders;
+    }
     
 
 }

@@ -1,5 +1,6 @@
 package com.inventory.InventoryManagement.DTO;
 
+
 public class StockItemAdmin {
     
     private String name;
