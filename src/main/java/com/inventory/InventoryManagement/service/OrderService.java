@@ -39,12 +39,10 @@ public class OrderService {
 
     List<OrderItemRequest> orderItemRequests = new ArrayList<>();
     
-    // Add single item if it's provided
     if (singleItem != null) {
         orderItemRequests.add(singleItem);
     }
 
-    // Add multiple items if provided
     if (multipleItems != null) {
         orderItemRequests.addAll(multipleItems);
     }
@@ -53,7 +51,6 @@ public class OrderService {
         throw new RuntimeException("Order cannot be empty");
     }
 
-    // Get admin from the first stock item
     StockItem firstStockItem = stockItemRepository.findById(orderItemRequests.get(0).getStockItemId())
             .orElseThrow(() -> new RuntimeException("Stock item not found"));
     AdminRegistration admin = firstStockItem.getAdmin();
@@ -74,7 +71,6 @@ public class OrderService {
             throw new RuntimeException("Not enough stock available for item: " + stockItem.getName());
         }
 
-        // Deduct stock immediately
         stockItem.setQuantity(stockItem.getQuantity() - itemRequest.getQuantity());
         stockItemRepository.save(stockItem);
 

@@ -54,7 +54,6 @@ public class AdminRegistrationServiceImpl implements AdminRegistrationService {
             admin.setName(updatedAdmin.getName());
             admin.setEmail(updatedAdmin.getEmail());
     
-            // Hash the password before saving
             BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
             String hashedPassword = passwordEncoder.encode(updatedAdmin.getPassword());
             admin.setPassword(hashedPassword);

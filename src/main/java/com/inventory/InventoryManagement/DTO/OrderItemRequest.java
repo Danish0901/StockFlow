@@ -4,7 +4,7 @@ public class OrderItemRequest {
     private Long stockItemId;
     private int quantity;
 
-    // Constructors
+   
     public OrderItemRequest() {}
 
     public OrderItemRequest(Long stockItemId, int quantity) {
@@ -12,7 +12,7 @@ public class OrderItemRequest {
         this.quantity = quantity;
     }
 
-    // Getters and Setters
+    
     public Long getStockItemId() {
         return stockItemId;
     }
